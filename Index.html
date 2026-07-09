@@ -1,0 +1,469 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BM Insights - Tigrinya Mastery</title>
+    <style>
+        /* --- BRAND COLORS --- */
+        :root {
+            --bg-cream: #fdf3d8;
+            --pale-green: #eaf1eb;
+            --golden-yellow: #fceea7;
+            --muted-green: #8aa38c;
+            --charcoal: #2b2c30;
+            --bright-yellow: #fadc19;
+            --vibrant-tillian: #00ffff;
+            --white: #ffffff;
+            --accent-red: #d30000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Smooth page fade transition setup */
+        body {
+            background-color: var(--bg-cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+            animation: fadeIn 0.5s ease-in;
+        }
+        body.fade-out { opacity: 0; }
+
+        /* --- GLOBAL ANIMATIONS --- */
+        @keyframes slideDown { 
+            from { opacity: 0; transform: translateY(-20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 🌟 THE SLOW, VIBRANT FLOWING ANIMATION (Logo & Buttons) 🌟 */
+        /* Takes exactly 6 seconds to complete one smooth revolution */
+        @keyframes flowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Dual-background animation specifically for button borders */
+        @keyframes borderFlow {
+            0% { background-position: 0% 0%, 0% 50%; }
+            50% { background-position: 0% 0%, 100% 50%; }
+            100% { background-position: 0% 0%, 0% 50%; }
+        }
+
+        /* --- NEW: VIBRANT REVOLVING BORDERS --- */
+        /* For standard white buttons */
+        .flow-border-white {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite; /* 6 Seconds to match logo */
+            box-shadow: 0 4px 12px rgba(211, 0, 0, 0.15); 
+        }
+
+        /* For primary red booking buttons */
+        .flow-border-red {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--accent-red), var(--accent-red)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite; /* 6 Seconds to match logo */
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.3);
+        }
+
+        /* --- TACTILE CLICK "ZOOM" EFFECT --- */
+        nav a:active, nav a.book-btn:active, .audio-btn:active, .huge-btn:active, .action-card:active {
+            transform: scale(0.92) !important;
+            transition: transform 0.1s ease !important;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--bg-cream); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            flex-wrap: wrap; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 2px solid #dcdcdc; 
+            gap: 15px;
+        }
+
+        /* --- GLOWING BRANDED LOGO --- */
+        .logo-frame {
+            display: inline-flex;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian));
+            background-size: 300% 300%;
+            animation: flowGradient 6s ease infinite; 
+            padding: 4px; 
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.15); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo-frame:hover { 
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25);
+        }
+
+        .logo-inner {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-cream);
+            border-radius: 12px;
+        }
+
+        .logo-img { 
+            height: 55px; 
+            width: auto; 
+            object-fit: contain; 
+            padding: 4px 8px 4px 12px;
+            display: block;
+        }
+
+        .logo-text {
+            color: var(--charcoal);
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            padding-right: 15px;
+        }
+
+        /* --- NAVIGATION LINKS & BUTTONS --- */
+        nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; flex-grow: 1; justify-content: center; }
+        
+        nav a { 
+            text-decoration: none; 
+            color: var(--charcoal); 
+            font-weight: 700; 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+        }
+        
+        /* Hover states fill in the button color without breaking the animated border */
+        nav a.flow-border-white:hover, nav a.active.flow-border-white { 
+            background: 
+                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--vibrant-tillian) !important;
+            transform: translateY(-2px);
+        }
+        
+        nav a.book-btn { 
+            border-radius: 25px; 
+            padding: 8px 18px; 
+        }
+        
+        nav a.flow-border-red:hover { 
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--accent-red) !important; 
+            transform: translateY(-2px); 
+        }
+
+        main { max-width: 1100px; margin: 40px auto; padding: 0 20px; animation: slideDown 0.8s ease forwards; }
+
+        .page-title { text-align: center; font-size: 3rem; margin-bottom: 5px; font-weight: 900; color: var(--charcoal); }
+        .subtitle { text-align: center; font-size: 1.2rem; font-weight: 600; margin-bottom: 40px; color: var(--accent-red); }
+        .section-heading { margin-top: 50px; margin-bottom: 25px; font-size: 2rem; text-align: center; color: var(--charcoal); }
+        .section-heading span { border-bottom: 4px solid var(--vibrant-tillian); display: inline-block; padding-bottom: 5px; }
+
+        /* --- DIRECT NAVIGATION CARDS --- */
+        .grid-links { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 25px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        
+        .action-card {
+            background: var(--white); 
+            border: 2px solid var(--charcoal); 
+            border-radius: 12px;
+            text-decoration: none; 
+            color: var(--charcoal); 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.04); 
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            display: flex; 
+            flex-direction: column;
+        }
+        .action-card::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 5px; 
+            background: var(--vibrant-tillian); 
+            transform: scaleX(0); 
+            transition: transform 0.3s ease; 
+            transform-origin: left; 
+            z-index: 10; 
+        }
+        .action-card:hover::before { transform: scaleX(1); }
+        
+        .action-card:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--vibrant-tillian); 
+            box-shadow: 0 12px 25px rgba(0, 255, 255, 0.25); 
+        }
+        
+        .card-thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9; 
+            position: relative;
+            border-bottom: 2px solid var(--charcoal);
+            background-color: var(--charcoal); 
+            overflow: hidden;
+        }
+        
+        .card-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            object-position: center;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .action-card:hover .card-thumbnail img { transform: scale(1.08); }
+        
+        .card-tag {
+            position: absolute; 
+            top: 12px; 
+            left: 12px; 
+            z-index: 2;
+            background: var(--vibrant-tillian); 
+            color: var(--charcoal); 
+            font-size: 0.75rem; 
+            font-weight: 900;
+            padding: 5px 12px; 
+            border-radius: 6px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            border: 1px solid var(--charcoal);
+        }
+
+        .card-tag.video-tag {
+            background: var(--accent-red);
+            color: var(--white);
+            border-color: var(--accent-red);
+        }
+        
+        .card-content { 
+            padding: 25px 20px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            flex-grow: 1; 
+            justify-content: center; 
+            background: var(--white);
+            z-index: 3;
+        }
+        .action-card h3 { font-size: 1.3rem; margin-bottom: 8px; transition: color 0.3s; line-height: 1.3; font-weight: 800; }
+        .action-card:hover h3 { color: var(--accent-red); }
+        .action-card p { font-size: 0.95rem; color: #555; margin: 0; }
+
+        /* --- CONVERSATION PREVIEW --- */
+        .chat-container { background: var(--white); border-radius: 16px; border: 2px solid var(--pale-green); padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .chat-bubble { background: var(--pale-green); padding: 15px 25px; border-radius: 20px; margin-bottom: 15px; width: fit-content; position: relative; transition: transform 0.3s ease; }
+        .chat-bubble:hover { transform: translateX(10px); }
+        .chat-tigrinya { font-size: 1.4rem; color: var(--vibrant-tillian); font-weight: bold; background: var(--charcoal); padding: 5px 15px; border-radius: 8px; display: inline-block; margin-bottom: 5px; }
+        .chat-english { font-weight: bold; color: var(--charcoal); font-size: 1.1rem; }
+        
+        /* Audio Button Base */
+        .audio-btn { 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            display: inline-flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            margin-left: 15px; 
+            vertical-align: middle; 
+        }
+        .audio-btn.flow-border-white:hover { 
+            background: 
+                linear-gradient(var(--vibrant-tillian), var(--vibrant-tillian)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--charcoal) !important; 
+            transform: scale(1.15); 
+        }
+
+        /* --- BOOKING BANNER --- */
+        .booking-banner { background: linear-gradient(135deg, var(--charcoal), #1a1b1e); color: var(--white); margin-top: 60px; padding: 50px 20px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--accent-red); }
+        .booking-banner h2 { font-size: 2.2rem; margin-bottom: 15px; color: var(--bright-yellow); }
+        
+        .huge-btn { 
+            display: inline-block; 
+            padding: 15px 35px; 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            transition: all 0.3s ease; 
+            margin-top: 15px; 
+        }
+        
+        .huge-btn.flow-border-red:hover { 
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--accent-red) !important; 
+            transform: scale(1.05); 
+        }
+
+        footer { text-align: center; padding: 30px; color: var(--charcoal); font-size: 0.9rem; margin-top: 60px; font-weight: bold; border-top: 1px solid #dcdcdc; }
+
+        /* --- 📱 MOBILE RESPONSIVENESS POLISH --- */
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.2rem; }
+            .section-heading { font-size: 1.6rem; }
+            .subtitle { font-size: 1rem; margin-bottom: 25px; }
+            
+            header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
+            nav { justify-content: center; width: 100%; gap: 8px; }
+            
+            .chat-container { padding: 20px 15px; }
+            .chat-bubble { width: 100%; margin-left: 0 !important; box-sizing: border-box; }
+            
+            .logo-img { height: 45px; }
+            .logo-text { height: 45px; font-size: 1.1rem; }
+        }
+    </style>
+</head> 
+<body>
+    <header>
+        <!-- GLOWING BRANDED LOGO FRAME WITH TEXT -->
+        <a href="index.html" class="logo-frame smooth-link">
+            <div class="logo-inner">
+                <img src="bm1.png" alt="BM Insights Logo" class="logo-img">
+                <span class="logo-text">BM-INSIGHTS</span>
+            </div>
+        </a>
+        
+        <!-- NAVIGATION MENU WITH VIBRANT REVOLVING BORDERS -->
+        <nav>
+            <a href="index.html" class="active smooth-link flow-border-white">Start Here</a>
+            <a href="lessons.html" class="smooth-link flow-border-white">Lessons</a>
+            <a href="blogs.html" class="smooth-link flow-border-white">Blogs</a>
+            <a href="https://www.italki.com/en/teacher/30237174?lv=1" target="_blank" class="book-btn flow-border-red">Book a Lesson</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Welcome to Tigrinya Mastery</h1>
+        <p class="subtitle">A structured path designed for complete beginners to achieve fluency.</p>
+        
+        <!-- DIRECT NAVIGATION CONTENT CARDS -->
+        <div class="grid-links">
+            <!-- VIDEO CARD -->
+            <a href="video-lesson.html" class="action-card smooth-link">
+                <div class="card-thumbnail">
+                    <span class="card-tag video-tag">▶ Video</span>
+                    <img src="thumbnail.jpg" alt="Video Lesson Thumbnail">
+                </div>
+                <div class="card-content">
+                    <h3>The Simple Past Tense</h3>
+                    <p>A breakdown of regular and irregular verbs.</p>
+                </div>
+            </a>
+            
+            <!-- COVER/ARTICLE CARD -->
+            <a href="lesson-1.html" class="action-card smooth-link">
+                <div class="card-thumbnail">
+                    <span class="card-tag">Lesson 1</span>
+                    <img src="COVER12.png" alt="Lesson Cover Image">
+                </div>
+                <div class="card-content">
+                    <h3>Basic Greetings in Tigrinya</h3>
+                    <p>Master how to correctly greet males and females.</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- INTERACTIVE CONVERSATION PREVIEW WITH AUDIO -->
+        <h2 class="section-heading"><span>Hear it in Action</span></h2>
+        <div class="chat-container">
+            <div class="chat-bubble">
+                <div class="chat-tigrinya">ከመይ ኣলোኻ፧</div>
+                <!-- AUDIO BUTTON WITH REVOLVING BORDER -->
+                <button class="audio-btn flow-border-white" onclick="playAudio('audio/kemey_aloka.mp3')" title="Play pronunciation">🔊</button>
+                <div class="chat-english">How are you? (To a male)</div>
+                <div style="color: gray; font-style: italic; font-size: 0.9rem; margin-top: 5px;">kemey aloka?</div>
+            </div>
+            
+            <div class="chat-bubble" style="margin-left: auto; background: var(--golden-yellow);">
+                <div class="chat-tigrinya">ሰናይ፣ የቐንየለይ</div>
+                <!-- AUDIO BUTTON WITH REVOLVING BORDER -->
+                <button class="audio-btn flow-border-white" onclick="playAudio('audio/senay_yeqenyeley.mp3')" title="Play pronunciation">🔊</button>
+                <div class="chat-english">Very well, thank you.</div>
+                <div style="color: gray; font-style: italic; font-size: 0.9rem; margin-top: 5px;">senay, yeqenyeley</div>
+            </div>
+        </div>
+
+        <!-- BOOKING BANNER -->
+        <div class="booking-banner">
+            <h2>Accelerate Your Fluency</h2>
+            <p>Ready to take your Tigrinya to the next level? Practice speaking directly with a native instructor tailored to your pace.</p>
+            <!-- HUGE BUTTON WITH REVOLVING BORDER -->
+            <a href="https://www.italki.com/en/teacher/30237174?lv=1" target="_blank" class="huge-btn flow-border-red">Book a 1-on-1 Lesson</a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 BM Insights. All rights reserved.
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Audio Player Logic
+        function playAudio(audioFileUrl) {
+            const audio = new Audio(audioFileUrl);
+            audio.play().catch(error => {
+                alert("Audio file not found! Make sure you save '" + audioFileUrl + "' in the right folder.");
+            });
+        }
+
+        // 2. Smooth Page Transitions
+        document.addEventListener("DOMContentLoaded", () => {
+            const smoothLinks = document.querySelectorAll('.smooth-link');
+            
+            smoothLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if(this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        
+                        document.body.classList.add('fade-out');
+                        
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 400);
+                    }
+                });
+            });
+        });
+    </script>
+</body> 
+</html>

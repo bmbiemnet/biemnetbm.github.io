@@ -1,0 +1,344 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - Tigrinya Mastery</title>
+    <style>
+        /* --- BRAND COLORS --- */
+        :root {
+            --bg-cream: #fdf3d8;
+            --pale-green: #eaf1eb;
+            --golden-yellow: #fceea7;
+            --muted-green: #8aa38c;
+            --charcoal: #2b2c30;
+            --bright-yellow: #fadc19;
+            --vibrant-tillian: #00ffff;
+            --white: #ffffff;
+            --accent-red: #d30000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Smooth page fade transition setup */
+        body {
+            background-color: var(--bg-cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+            animation: fadeIn 0.5s ease-in;
+        }
+        body.fade-out { opacity: 0; }
+
+        /* --- GLOBAL ANIMATIONS --- */
+        @keyframes slideDown { 
+            from { opacity: 0; transform: translateY(-20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 🌟 THE SLOW, VIBRANT FLOWING ANIMATION (Logo & Buttons) 🌟 */
+        @keyframes flowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 0%, 0% 50%; }
+            50% { background-position: 0% 0%, 100% 50%; }
+            100% { background-position: 0% 0%, 0% 50%; }
+        }
+
+        /* --- VIBRANT REVOLVING BORDERS --- */
+        .flow-border-white {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite;
+            box-shadow: 0 4px 12px rgba(211, 0, 0, 0.15); 
+        }
+
+        .flow-border-red {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--accent-red), var(--accent-red)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite; 
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.3);
+        }
+
+        /* --- TACTILE CLICK "ZOOM" EFFECT --- */
+        nav a:active, nav a.book-btn:active, .action-card:active {
+            transform: scale(0.92) !important;
+            transition: transform 0.1s ease !important;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--bg-cream); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            flex-wrap: wrap; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 2px solid #dcdcdc; 
+            gap: 15px;
+        }
+
+        /* --- GLOWING BRANDED LOGO --- */
+        .logo-frame {
+            display: inline-flex;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian));
+            background-size: 300% 300%;
+            animation: flowGradient 6s ease infinite;
+            padding: 4px; 
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo-frame:hover { 
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25);
+        }
+
+        .logo-inner {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-cream);
+            border-radius: 12px;
+        }
+
+        .logo-img { 
+            height: 55px; 
+            width: auto; 
+            object-fit: contain; 
+            padding: 4px 8px 4px 12px;
+            display: block;
+        }
+
+        .logo-text {
+            color: var(--charcoal);
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            padding-right: 15px;
+        }
+
+        /* --- NAVIGATION LINKS --- */
+        nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; flex-grow: 1; justify-content: center; }
+        
+        nav a { 
+            text-decoration: none; 
+            color: var(--charcoal); 
+            font-weight: 700; 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+        }
+
+        nav a.flow-border-white:hover, nav a.active.flow-border-white { 
+            background: 
+                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--vibrant-tillian) !important;
+            transform: translateY(-2px);
+        }
+
+        nav a.book-btn { 
+            border-radius: 25px; 
+            padding: 8px 18px; 
+        }
+
+        nav a.flow-border-red:hover { 
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--accent-red) !important; 
+            transform: translateY(-2px); 
+        }
+
+        main { max-width: 1100px; margin: 40px auto; padding: 0 20px; animation: slideDown 0.8s ease forwards; }
+
+        .page-title { text-align: center; font-size: 3rem; margin-bottom: 5px; font-weight: 900; color: var(--charcoal); }
+        .subtitle { text-align: center; font-size: 1.2rem; font-weight: 600; margin-bottom: 50px; color: var(--accent-red); }
+
+        /* --- GRID AND CARDS --- */
+        .grid-links { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .action-card {
+            background: var(--white); 
+            border: 2px solid var(--charcoal); 
+            border-radius: 12px; 
+            text-decoration: none; 
+            color: var(--charcoal); 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.04); 
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        .action-card::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 5px; 
+            background: var(--vibrant-tillian); 
+            transform: scaleX(0); 
+            transition: transform 0.3s ease; 
+            transform-origin: left; 
+            z-index: 10; 
+        }
+        
+        .action-card:hover::before { transform: scaleX(1); }
+        .action-card:hover { transform: translateY(-5px); border-color: var(--vibrant-tillian); box-shadow: 0 12px 25px rgba(0, 255, 255, 0.25); }
+        
+        .card-thumbnail { width: 100%; aspect-ratio: 16 / 9; position: relative; border-bottom: 2px solid var(--charcoal); background-color: var(--charcoal); overflow: hidden; }
+        .card-thumbnail img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .action-card:hover .card-thumbnail img { transform: scale(1.08); }
+        
+        .card-tag { position: absolute; top: 12px; left: 12px; z-index: 2; background: var(--vibrant-tillian); color: var(--charcoal); font-size: 0.75rem; font-weight: 900; padding: 5px 12px; border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--charcoal); }
+        .card-tag.culture-tag { background: var(--golden-yellow); color: var(--charcoal); border-color: var(--charcoal); }
+        
+        .card-content { padding: 25px 20px; text-align: left; display: flex; flex-direction: column; flex-grow: 1; background: var(--white); z-index: 3; }
+        .action-card h3 { font-size: 1.4rem; margin-bottom: 12px; transition: color 0.3s; line-height: 1.3; font-weight: 800; }
+        .action-card:hover h3 { color: var(--accent-red); }
+        .action-card p { font-size: 1rem; color: #555; margin-bottom: 15px; line-height: 1.5; }
+        
+        .read-more { margin-top: auto; font-weight: 800; color: var(--accent-red); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        footer { text-align: center; padding: 30px; color: var(--charcoal); font-size: 0.9rem; margin-top: 60px; font-weight: bold; border-top: 1px solid #dcdcdc; }
+
+        /* --- 📱 MOBILE RESPONSIVENESS POLISH --- */
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.2rem; }
+            .subtitle { font-size: 1rem; margin-bottom: 30px; }
+            header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
+            nav { justify-content: center; width: 100%; gap: 8px; }
+            .logo-img { height: 45px; }
+            .logo-text { height: 45px; font-size: 1.1rem; }
+        }
+    </style>
+</head> 
+<body>
+    <header>
+        <!-- GLOWING BRANDED LOGO FRAME WITH TEXT -->
+        <a href="index.html" class="logo-frame smooth-link">
+            <div class="logo-inner">
+                <img src="bm1.png" alt="BM Insights Logo" class="logo-img">
+                <span class="logo-text">BM-INSIGHTS</span>
+            </div>
+        </a>
+        
+        <!-- NAVIGATION MENU WITH VIBRANT REVOLVING BORDERS -->
+        <nav>
+            <a href="index.html" class="smooth-link flow-border-white">Start Here</a>
+            <a href="lessons.html" class="smooth-link flow-border-white">Lessons</a>
+            <!-- Active state applied to Blogs -->
+            <a href="blogs.html" class="active smooth-link flow-border-white">Blogs</a>
+            <a href="https://www.italki.com/en/teacher/30237174?lv=1" target="_blank" class="book-btn flow-border-red">Book a Lesson</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">BM Insights Blog</h1>
+        <p class="subtitle">Language tips, cultural deep-dives, and updates from your instructor.</p>
+        
+        <!-- BLOG GRID -->
+        <div class="grid-links">
+            
+            <!-- BLOG POST 1 -->
+            <a href="#" class="action-card smooth-link">
+                <div class="card-thumbnail">
+                    <span class="card-tag">Language Tips</span>
+                    <!-- You can use your own thumbnail images here -->
+                    <img src="COVER12.png" alt="Blog Cover Image">
+                </div>
+                <div class="card-content">
+                    <h3>Describing Your Daily Routine</h3>
+                    <p>Master the essential verbs and time expressions (morning, afternoon, evening) you need to confidently describe your day-to-day life in Tigrinya.</p>
+                    <span class="read-more">Read Article →</span>
+                </div>
+            </a>
+            
+            <!-- BLOG POST 2 -->
+            <a href="#" class="action-card smooth-link">
+                <div class="card-thumbnail">
+                    <span class="card-tag culture-tag">Culture</span>
+                    <img src="COVER1.png" alt="Blog Cover Image">
+                </div>
+                <div class="card-content">
+                    <h3>The Eritrean Coffee Ceremony</h3>
+                    <p>More than just a drink, the coffee ceremony is the cornerstone of hospitality. Learn the traditions, the tools, and the language used during this beautiful ritual.</p>
+                    <span class="read-more">Read Article →</span>
+                </div>
+            </a>
+
+            <!-- BLOG POST 3 -->
+            <a href="#" class="action-card smooth-link">
+                <div class="card-thumbnail">
+                    <span class="card-tag">Language Tips</span>
+                    <img src="thumbnail.jpg" alt="Blog Cover Image">
+                </div>
+                <div class="card-content">
+                    <h3>5 Ways to Practice Speaking When You Are Alone</h3>
+                    <p>Don't have a practice partner? Don't worry. Here are five highly effective techniques to improve your pronunciation and fluency on your own.</p>
+                    <span class="read-more">Read Article →</span>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 BM Insights. All rights reserved.
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Smooth Page Transitions
+        document.addEventListener("DOMContentLoaded", () => {
+            const smoothLinks = document.querySelectorAll('.smooth-link');
+            
+            smoothLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only trigger if there's a real href (ignoring # for placeholders)
+                    if(this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        
+                        document.body.classList.add('fade-out');
+                        
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 400);
+                    }
+                });
+            });
+        });
+    </script>
+</body> 
+</html>

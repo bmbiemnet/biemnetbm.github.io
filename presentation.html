@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigrinya Grammar Presentation</title>
+    <style>
+        :root {
+            /* Custom Brand Palette */
+            --charcoal: #36454F;
+            --pale-green: #E8F5E9;
+            --muted-green: #8FBC8F;
+            --golden-pale-yellow: #FFF9C4;
+            --bright-yellow: #FFEA00;
+            --vibrant-tillian: #008B8B; 
+            
+            --bg-color: var(--pale-green);
+            --card-bg: #ffffff;
+            --text-color: var(--charcoal);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .presentation-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            border-top: 8px solid var(--vibrant-tillian);
+            box-shadow: 0 10px 40px rgba(54, 69, 79, 0.15);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--vibrant-tillian);
+            border-bottom: 2px solid var(--muted-green);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.05rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--muted-green);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        
+        tr:hover {
+            background-color: var(--golden-pale-yellow);
+        }
+
+        .translit {
+            color: var(--vibrant-tillian);
+            font-style: italic;
+            font-size: 0.95em;
+        }
+
+        .examples {
+            background-color: var(--golden-pale-yellow);
+            border-left: 4px solid var(--bright-yellow);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .examples ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .examples li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        button {
+            background-color: var(--vibrant-tillian);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--bright-yellow);
+            color: var(--charcoal);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            color: #666;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .progress {
+            font-weight: bold;
+            color: var(--muted-green);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide-1">
+            <h2>1. The Verb "to be" and Subject Pronouns</h2>
+            <p>The verb “to be” in the present tense is conjugated as follows.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Singular</th>
+                        <th>English</th>
+                        <th>Plural</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>3 m.</td><td>እዩ <br><span class="translit">('əyu)</span></td><td><em>he is</em></td><td>እዮም <br><span class="translit">('əyom)</span></td><td><em>they are</em></td></tr>
+                    <tr><td>f.</td><td>እያ <br><span class="translit">('əya)</span></td><td><em>she is</em></td><td>እየን <br><span class="translit">('əyän)</span></td><td><em>they are</em></td></tr>
+                    <tr><td>2 m.</td><td>ኢኻ <br><span class="translit">('ikha)</span></td><td><em>you are</em></td><td>ኢኹም <br><span class="translit">('ikhum)</span></td><td><em>you are</em></td></tr>
+                    <tr><td>f.</td><td>ኢኺ <br><span class="translit">('ikhi)</span></td><td><em>you are</em></td><td>ኢኽን <br><span class="translit">('ikhən)</span></td><td><em>you are</em></td></tr>
+                    <tr><td>1 c.</td><td>እየ <br><span class="translit">('əyä)</span></td><td><em>I am</em></td><td>ኢና <br><span class="translit">('ina)</span></td><td><em>we are</em></td></tr>
+                </tbody>
+            </table>
+
+            <p>This verb is used for relations of identity and qualification (as with adjectives).</p>
+
+            <div class="examples">
+                <strong>Examples (Sentences with እዩ):</strong>
+                <ul>
+                    <li><strong>እቲ ወረቐት ጻዕዳ እዩ።</strong> <br><span class="translit">'əti wäräqät ts'a'əda 'əyu.</span> <br><em>The paper is white.</em></li>
+                    <li><strong>እታ ኵዕሶ ክባብ እያ።</strong> <br><span class="translit">'əta kʷ'əsä kəbab 'əya.</span> <br><em>The ball is round.</em></li>
+                    <li><strong>እቶም ሰብኡት ሓያላት እዮም።</strong> <br><span class="translit">'ətom säb'ut ḥayalat 'əyom.</span> <br><em>The men are strong.</em></li>
+                    <li><strong>እተን ቈልዑ ንኣሽቱ እየን።</strong> <br><span class="translit">'ətän q'äl'u nə'ashtu 'əyän.</span> <br><em>The children are small.</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="slide-2">
+            <h2>2. Demonstratives</h2>
+            <p>The demonstrative pronouns, <strong>እዚ</strong> <span class="translit">('əzi)</span>, <strong>እቲ</strong> <span class="translit">('əti)</span>, have masculine and feminine forms in both singular and plural.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gender</th>
+                        <th>Singular</th>
+                        <th>English</th>
+                        <th>Plural</th>
+                        <th>English</th>
+                        <th>Polite Forms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>masc.</td><td>እዚ <br><span class="translit">('əzi)</span></td><td><em>this</em></td><td>እዚኣቶም <br><span class="translit">('əzi'atom)</span></td><td><em>these</em></td><td>እዚኦም <br><span class="translit">('əzi'om)</span></td></tr>
+                    <tr><td>fem.</td><td>እዚኣ <br><span class="translit">('əzi'a)</span></td><td><em>this</em></td><td>እዚኣተን <br><span class="translit">('əzi'atän)</span></td><td><em>these</em></td><td>እዚአን <br><span class="translit">('əzi'än)</span></td></tr>
+                    <tr><td>masc.</td><td>እቲ <br><span class="translit">('əti)</span></td><td><em>that</em></td><td>እቲኣቶም <br><span class="translit">('əti'atom)</span></td><td><em>those</em></td><td>እቲኦም <br><span class="translit">('əti'om)</span></td></tr>
+                    <tr><td>fem.</td><td>እቲኣ <br><span class="translit">('əti'a)</span></td><td><em>that</em></td><td>እቲኣተን <br><span class="translit">('əti'atän)</span></td><td><em>those</em></td><td>እቲአን <br><span class="translit">('əti'än)</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="slide-3">
+            <h2>3. Negative of the Verb "to be"</h2>
+            <p>The present tense of the negative of “to be” is as follows:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Singular</th>
+                        <th>English</th>
+                        <th>Plural</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>3 m.</td><td>ኣይኰነን <br><span class="translit">('aykonän)</span></td><td><em>he is not</em></td><td>ኣይኰኑን <br><span class="translit">('aykonun)</span></td><td><em>they are not</em></td></tr>
+                    <tr><td>f.</td><td>ኣይኰነትን <br><span class="translit">('aykonätn)</span></td><td><em>she is not</em></td><td>ኣይኰናን <br><span class="translit">('aykonan)</span></td><td><em>they are not</em></td></tr>
+                    <tr><td>2 m.</td><td>ኣይኰንካን <br><span class="translit">('aykonkan)</span></td><td><em>you are not</em></td><td>ኣይኰንኩምን <br><span class="translit">('aykonkumn)</span></td><td><em>you are not</em></td></tr>
+                    <tr><td>f.</td><td>ኣይኰንክን <br><span class="translit">('aykonkən)</span></td><td><em>you are not</em></td><td>ኣይኰንክንን <br><span class="translit">('aykonkənn)</span></td><td><em>you are not</em></td></tr>
+                    <tr><td>1 c.</td><td>ኣይኰንኩን <br><span class="translit">('aykonkun)</span></td><td><em>I am not</em></td><td>ኣይኰንናን <br><span class="translit">('aykonnan)</span></td><td><em>we are not</em></td></tr>
+                </tbody>
+            </table>
+
+            <div class="examples">
+                <strong>Examples:</strong>
+                <ul>
+                    <li><strong>እዚ መጽሓፍ ዓብዪ ኣይኰነን።</strong> <br><span class="translit">'əzi mäts'ḥaf 'abyi 'aykonän.</span> <br><em>This book is not large.</em></li>
+                    <li><strong>እዚዶ ርሳስ እዩ፧ ኣይኰነን፡ ብርዒ እዩ።</strong> <br><span class="translit">'əzido rəsas 'əyu? 'aykonän, bər'i 'əyu.</span> <br><em>Is this a pencil? No, it is a pen.</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide-4">
+            <h2>4. Possessive Pronouns</h2>
+            <p>The possessive pronouns that are independent, or stand as separate words, are as follows:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Person</th>
+                        <th>Singular</th>
+                        <th>English</th>
+                        <th>Plural</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>3 m.</td><td>ናቱ <br><span class="translit">(natu)</span></td><td><em>his</em></td><td>ናቶም <br><span class="translit">(natom)</span></td><td><em>their, theirs</em></td></tr>
+                    <tr><td>f.</td><td>ናታ <br><span class="translit">(nata)</span></td><td><em>her, hers</em></td><td>ናተን <br><span class="translit">(natän)</span></td><td><em>their, theirs</em></td></tr>
+                    <tr><td>2 m.</td><td>ናትካ <br><span class="translit">(natka)</span></td><td><em>your, yours</em></td><td>ናትኩም <br><span class="translit">(natkum)</span></td><td><em>your, yours</em></td></tr>
+                    <tr><td>f.</td><td>ናትኪ <br><span class="translit">(natki)</span></td><td><em>your, yours</em></td><td>ናትክን <br><span class="translit">(natkən)</span></td><td><em>your, yours</em></td></tr>
+                    <tr><td>1 c.</td><td>ናተይ <br><span class="translit">(natäy)</span></td><td><em>my, mine</em></td><td>ናትና <br><span class="translit">(natna)</span></td><td><em>our, ours</em></td></tr>
+                </tbody>
+            </table>
+
+            <div class="examples">
+                <strong>Examples:</strong>
+                <ul>
+                    <li><strong>ናተይ መጽሓፍ ኣብዚ ኣሎ።</strong> <br><span class="translit">natäy mäts'ḥaf 'abzi 'alo.</span> <br><em>My book is here.</em></li>
+                    <li><strong>መጽሓፈይ ኣብዚ ኣሎ።</strong> <br><span class="translit">mäts'ḥafäy 'abzi 'alo.</span> <br><em>My book is here.</em></li>
+                    <hr style="border: 0; border-top: 1px solid #ccc; margin: 15px 0;">
+                    <li><strong>ናትካ ድዩ፧ ናተይ እዩ።</strong> <br><span class="translit">natka dəyu? natäy 'əyu.</span> <br><em>Is it yours? —It's mine.</em></li>
+                    <li><strong>ናትካ ድዩ፧ ናተይ ኣይኰነን።</strong> <br><span class="translit">natka dəyu? natäy 'aykonän.</span> <br><em>Is it yours? —It isn't mine.</em></li>
+                    <li>or <strong>ኣይናተይን እዩ።</strong> <br><span class="translit">'aynatäyn 'əyu.</span> <br><em>It is not mine.</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="controls">
+            <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+            <span class="progress" id="progressText">Slide 1 of 4</span>
+            <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressText = document.getElementById('progressText');
+
+        function updateUI() {
+            // Update active slide
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlideIndex) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update buttons
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === slides.length - 1;
+
+            // Update progress text
+            progressText.innerText = `Slide ${currentSlideIndex + 1} of ${slides.length}`;
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            
+            // Boundary checks
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = slides.length - 1;
+
+            updateUI();
+        }
+    </script>
+</body>
+</html>

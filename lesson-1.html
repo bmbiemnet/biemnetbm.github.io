@@ -1,0 +1,448 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Basic Greetings - Tigrinya Mastery</title>
+    <style>
+        /* --- BRAND COLORS --- */
+        :root {
+            --bg-cream: #fdf3d8;
+            --pale-green: #eaf1eb;
+            --golden-yellow: #fceea7;
+            --muted-green: #8aa38c;
+            --charcoal: #2b2c30;
+            --bright-yellow: #fadc19;
+            --vibrant-tillian: #00ffff;
+            --white: #ffffff;
+            --accent-red: #d30000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Smooth page fade transition setup */
+        body {
+            background-color: var(--bg-cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+            animation: fadeIn 0.5s ease-in;
+        }
+        body.fade-out { opacity: 0; }
+
+        /* --- GLOBAL ANIMATIONS --- */
+        @keyframes slideDown { 
+            from { opacity: 0; transform: translateY(-20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 🌟 THE SLOW, VIBRANT FLOWING ANIMATION (Logo & Buttons) 🌟 */
+        @keyframes flowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 0%, 0% 50%; }
+            50% { background-position: 0% 0%, 100% 50%; }
+            100% { background-position: 0% 0%, 0% 50%; }
+        }
+
+        /* --- VIBRANT REVOLVING BORDERS --- */
+        .flow-border-white {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite;
+            box-shadow: 0 4px 12px rgba(211, 0, 0, 0.15); 
+        }
+
+        .flow-border-red {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--accent-red), var(--accent-red)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite; 
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.3);
+        }
+
+        /* --- TACTILE CLICK "ZOOM" EFFECT --- */
+        nav a:active, nav a.book-btn:active, .audio-btn:active, .nav-btn:active {
+            transform: scale(0.92) !important;
+            transition: transform 0.1s ease !important;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--bg-cream); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            flex-wrap: wrap; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 2px solid #dcdcdc; 
+            gap: 15px;
+        }
+
+        /* --- GLOWING BRANDED LOGO --- */
+        .logo-frame {
+            display: inline-flex;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian));
+            background-size: 300% 300%;
+            animation: flowGradient 6s ease infinite;
+            padding: 4px; 
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo-frame:hover { 
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25);
+        }
+
+        .logo-inner {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-cream);
+            border-radius: 12px;
+        }
+
+        .logo-img { 
+            height: 55px; 
+            width: auto; 
+            object-fit: contain; 
+            padding: 4px 8px 4px 12px;
+            display: block;
+        }
+
+        .logo-text {
+            color: var(--charcoal);
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            padding-right: 15px;
+        }
+
+        /* --- NAVIGATION LINKS --- */
+        nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; flex-grow: 1; justify-content: center; }
+        
+        nav a { 
+            text-decoration: none; 
+            color: var(--charcoal); 
+            font-weight: 700; 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+        }
+
+        nav a.flow-border-white:hover, nav a.active.flow-border-white { 
+            background: 
+                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--vibrant-tillian) !important;
+            transform: translateY(-2px);
+        }
+
+        nav a.book-btn { 
+            border-radius: 25px; 
+            padding: 8px 18px; 
+        }
+
+        nav a.flow-border-red:hover { 
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--accent-red) !important; 
+            transform: translateY(-2px); 
+        }
+
+        main { max-width: 900px; margin: 40px auto; padding: 0 20px; animation: slideDown 0.8s ease forwards; }
+
+        /* --- LESSON CONTENT STYLES --- */
+        .lesson-header { text-align: center; margin-bottom: 40px; }
+        .lesson-tag { background: var(--vibrant-tillian); color: var(--charcoal); font-weight: 900; padding: 5px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--charcoal); font-size: 0.85rem; display: inline-block; margin-bottom: 15px; }
+        .lesson-title { font-size: 3rem; font-weight: 900; color: var(--charcoal); margin-bottom: 10px; line-height: 1.2; }
+        .lesson-subtitle { font-size: 1.2rem; color: var(--accent-red); font-weight: 600; }
+
+        .lesson-box {
+            background: var(--white);
+            border: 2px solid var(--charcoal);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .lesson-box h2 { color: var(--charcoal); font-size: 1.8rem; margin-bottom: 20px; border-bottom: 4px solid var(--vibrant-tillian); display: inline-block; padding-bottom: 5px; }
+        .lesson-box p { font-size: 1.1rem; color: #444; margin-bottom: 20px; }
+        
+        /* Vocabulary Table */
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--charcoal);
+        }
+        .vocab-table th, .vocab-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dcdcdc;
+            vertical-align: middle;
+        }
+        .vocab-table th {
+            background-color: var(--charcoal);
+            color: var(--vibrant-tillian);
+            font-size: 1.1rem;
+        }
+        .vocab-table tr:nth-child(even) { background-color: var(--pale-green); }
+        .vocab-table tr:hover { background-color: var(--bg-cream); }
+        .vocab-tigrinya { font-weight: 900; font-size: 1.3rem; color: var(--accent-red); }
+
+        /* Audio Button Base */
+        .audio-btn { 
+            border-radius: 50%; 
+            width: 45px; 
+            height: 45px; 
+            display: inline-flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+        .audio-btn.flow-border-white:hover { 
+            background: 
+                linear-gradient(var(--vibrant-tillian), var(--vibrant-tillian)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--charcoal) !important; 
+            transform: scale(1.15); 
+        }
+        
+        /* Mini Audio Button for Transliterations */
+        .mini-audio {
+            width: 32px;
+            height: 32px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        /* Transliteration Layout */
+        .transliteration-row {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(43, 44, 48, 0.15);
+        }
+        .transliteration-text {
+            color: #666;
+            font-style: italic;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* --- CONVERSATION PREVIEW --- */
+        .chat-container { background: var(--bg-cream); border-radius: 12px; border: 2px solid var(--charcoal); padding: 30px; margin-top: 30px; }
+        .chat-bubble { background: var(--pale-green); padding: 15px 25px; border-radius: 20px; margin-bottom: 15px; width: fit-content; position: relative; border: 1px solid var(--charcoal); }
+        .chat-tigrinya { font-size: 1.4rem; color: var(--vibrant-tillian); font-weight: bold; background: var(--charcoal); padding: 5px 15px; border-radius: 8px; display: inline-block; margin-bottom: 5px; }
+        .chat-english { font-weight: bold; color: var(--charcoal); font-size: 1.1rem; }
+
+        /* Navigation Buttons */
+        .lesson-nav { display: flex; justify-content: space-between; margin-top: 40px; }
+        .nav-btn { 
+            text-decoration: none; 
+            font-weight: 800; 
+            padding: 12px 25px; 
+            border-radius: 30px; 
+            color: var(--charcoal); 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .nav-btn.flow-border-white:hover {
+            background: 
+                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--vibrant-tillian) !important;
+            transform: translateY(-2px);
+        }
+
+        footer { text-align: center; padding: 30px; color: var(--charcoal); font-size: 0.9rem; margin-top: 60px; font-weight: bold; border-top: 1px solid #dcdcdc; }
+
+        /* --- 📱 MOBILE RESPONSIVENESS POLISH --- */
+        @media (max-width: 768px) {
+            .lesson-title { font-size: 2.2rem; }
+            .lesson-box { padding: 25px 15px; }
+            header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
+            nav { justify-content: center; width: 100%; gap: 8px; }
+            .logo-img { height: 45px; }
+            .logo-text { height: 45px; font-size: 1.1rem; }
+            .vocab-table { display: block; overflow-x: auto; white-space: nowrap; }
+            .chat-bubble { width: 100%; margin-left: 0 !important; box-sizing: border-box; }
+            .lesson-nav { flex-direction: column; gap: 15px; }
+            .nav-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head> 
+<body>
+    <header>
+        <!-- GLOWING BRANDED LOGO FRAME WITH TEXT -->
+        <a href="index.html" class="logo-frame smooth-link">
+            <div class="logo-inner">
+                <img src="bm1.png" alt="BM Insights Logo" class="logo-img">
+                <span class="logo-text">BM-INSIGHTS</span>
+            </div>
+        </a>
+        
+        <!-- NAVIGATION MENU WITH VIBRANT REVOLVING BORDERS -->
+        <nav>
+            <a href="index.html" class="smooth-link flow-border-white">Start Here</a>
+            <a href="lessons.html" class="active smooth-link flow-border-white">Lessons</a>
+            <a href="blogs.html" class="smooth-link flow-border-white">Blogs</a>
+            <a href="https://www.italki.com/en/teacher/30237174?lv=1" target="_blank" class="book-btn flow-border-red">Book a Lesson</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-tag">Vocabulary & Culture</span>
+            <h1 class="lesson-title">Lesson 1: Basic Greetings</h1>
+            <p class="lesson-subtitle">Master how to correctly greet males and females in Tigrinya.</p>
+        </div>
+
+        <div class="lesson-box">
+            <h2>The Golden Rule of Greetings</h2>
+            <p>In Tigrinya, the way you say "How are you?" changes depending on whether you are speaking to a male, a female, or a group of people. This is one of the most important foundations to master as a beginner!</p>
+            
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>English Meaning</th>
+                        <th>Tigrinya Script</th>
+                        <th>Pronunciation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>How are you? (To a male)</td>
+                        <td class="vocab-tigrinya">ከመይ ኣሎኻ፧</td>
+                        <td>
+                            <div class="transliteration-row" style="border-top: none; margin-top: 0; padding-top: 0;">
+                                <span class="transliteration-text">Kemey alokha?</span>
+                                <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/kemey_aloka.mp3')" title="Play pronunciation">🔊</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>How are you? (To a female)</td>
+                        <td class="vocab-tigrinya">ከመይ ኣሎኺ፧</td>
+                        <td>
+                            <div class="transliteration-row" style="border-top: none; margin-top: 0; padding-top: 0;">
+                                <span class="transliteration-text">Kemey alokhi?</span>
+                                <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/kemey_aloki.mp3')" title="Play pronunciation">🔊</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Very well, thank you.</td>
+                        <td class="vocab-tigrinya">ሰናይ፣ የቐንየለይ</td>
+                        <td>
+                            <div class="transliteration-row" style="border-top: none; margin-top: 0; padding-top: 0;">
+                                <span class="transliteration-text">Senay, yeqenyeley.</span>
+                                <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/senay_yeqenyeley.mp3')" title="Play pronunciation">🔊</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>See it in a Conversation</h2>
+            <p>Here is what a standard greeting exchange looks like when passing a male friend on the street in Asmara:</p>
+            
+            <div class="chat-container">
+                <div class="chat-bubble">
+                    <div class="chat-tigrinya">ከመይ ኣሎኻ፧</div>
+                    <div class="chat-english">How are you?</div>
+                    <!-- TRANSLITERATION WITH MINI AUDIO BUTTON -->
+                    <div class="transliteration-row">
+                        <span class="transliteration-text">kemey alokha?</span>
+                        <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/kemey_aloka.mp3')" title="Play pronunciation">🔊</button>
+                    </div>
+                </div>
+                
+                <div class="chat-bubble" style="margin-left: auto; background: var(--golden-yellow);">
+                    <div class="chat-tigrinya">ሰናይ፣ የቐንየለይ</div>
+                    <div class="chat-english">Very well, thank you.</div>
+                    <!-- TRANSLITERATION WITH MINI AUDIO BUTTON -->
+                    <div class="transliteration-row">
+                        <span class="transliteration-text">senay, yeqenyeley</span>
+                        <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/senay_yeqenyeley.mp3')" title="Play pronunciation">🔊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-nav">
+            <a href="lessons.html" class="nav-btn flow-border-white smooth-link">← Back to Lessons</a>
+            <a href="video-lesson.html" class="nav-btn flow-border-white smooth-link">Next: Simple Past Tense →</a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 BM Insights. All rights reserved.
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Audio Player Logic
+        function playAudio(audioFileUrl) {
+            const audio = new Audio(audioFileUrl);
+            audio.play().catch(error => {
+                alert("Audio file not found! Make sure you save '" + audioFileUrl + "' in your audio folder.");
+            });
+        }
+
+        // 2. Smooth Page Transitions
+        document.addEventListener("DOMContentLoaded", () => {
+            const smoothLinks = document.querySelectorAll('.smooth-link');
+            
+            smoothLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only trigger if there's a real href
+                    if(this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        
+                        document.body.classList.add('fade-out');
+                        
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 400);
+                    }
+                });
+            });
+        });
+    </script>
+</body> 
+</html>

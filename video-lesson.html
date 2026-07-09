@@ -1,0 +1,342 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Lesson: Simple Past Tense - Tigrinya Mastery</title>
+    <style>
+        /* --- BRAND COLORS --- */
+        :root {
+            --bg-cream: #fdf3d8;
+            --pale-green: #eaf1eb;
+            --golden-yellow: #fceea7;
+            --muted-green: #8aa38c;
+            --charcoal: #2b2c30;
+            --bright-yellow: #fadc19;
+            --vibrant-tillian: #00ffff;
+            --white: #ffffff;
+            --accent-red: #d30000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Smooth page fade transition setup */
+        body {
+            background-color: var(--bg-cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+            animation: fadeIn 0.5s ease-in;
+        }
+        body.fade-out { opacity: 0; }
+
+        /* --- GLOBAL ANIMATIONS --- */
+        @keyframes slideDown { 
+            from { opacity: 0; transform: translateY(-20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 🌟 THE SLOW, VIBRANT FLOWING ANIMATION 🌟 */
+        @keyframes flowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 0%, 0% 50%; }
+            50% { background-position: 0% 0%, 100% 50%; }
+            100% { background-position: 0% 0%, 0% 50%; }
+        }
+
+        /* --- VIBRANT REVOLVING BORDERS --- */
+        .flow-border-white {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite;
+            box-shadow: 0 4px 12px rgba(211, 0, 0, 0.15); 
+        }
+
+        .flow-border-red {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--accent-red), var(--accent-red)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite; 
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.3);
+        }
+
+        /* --- TACTILE CLICK "ZOOM" EFFECT --- */
+        nav a:active, nav a.book-btn:active, .nav-btn:active {
+            transform: scale(0.92) !important;
+            transition: transform 0.1s ease !important;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--bg-cream); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            flex-wrap: wrap; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 2px solid #dcdcdc; 
+            gap: 15px;
+        }
+
+        /* --- GLOWING BRANDED LOGO --- */
+        .logo-frame {
+            display: inline-flex;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian));
+            background-size: 300% 300%;
+            animation: flowGradient 6s ease infinite;
+            padding: 4px; 
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo-frame:hover { 
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25);
+        }
+
+        .logo-inner {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-cream);
+            border-radius: 12px;
+        }
+
+        .logo-img { 
+            height: 55px; 
+            width: auto; 
+            object-fit: contain; 
+            padding: 4px 8px 4px 12px;
+            display: block;
+        }
+
+        .logo-text {
+            color: var(--charcoal);
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            padding-right: 15px;
+        }
+
+        /* --- NAVIGATION LINKS --- */
+        nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; flex-grow: 1; justify-content: center; }
+        
+        nav a { 
+            text-decoration: none; 
+            color: var(--charcoal); 
+            font-weight: 700; 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+        }
+
+        nav a.flow-border-white:hover, nav a.active.flow-border-white { 
+            background: 
+                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--vibrant-tillian) !important;
+            transform: translateY(-2px);
+        }
+
+        nav a.book-btn { 
+            border-radius: 25px; 
+            padding: 8px 18px; 
+        }
+
+        nav a.flow-border-red:hover { 
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--accent-red) !important; 
+            transform: translateY(-2px); 
+        }
+
+        main { max-width: 900px; margin: 40px auto; padding: 0 20px; animation: slideDown 0.8s ease forwards; }
+
+        /* --- LESSON CONTENT STYLES --- */
+        .lesson-header { text-align: center; margin-bottom: 30px; }
+        .lesson-tag { background: var(--accent-red); color: var(--white); font-weight: 900; padding: 5px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--charcoal); font-size: 0.85rem; display: inline-block; margin-bottom: 15px; }
+        .lesson-title { font-size: 3rem; font-weight: 900; color: var(--charcoal); margin-bottom: 10px; line-height: 1.2; }
+        .lesson-subtitle { font-size: 1.2rem; color: var(--charcoal); font-weight: 600; opacity: 0.8; }
+
+        /* --- RESPONSIVE VIDEO EMBED --- */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Creates a perfect 16:9 Aspect Ratio */
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--charcoal);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+            background-color: var(--charcoal);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: none;
+        }
+
+        /* --- LESSON NOTES BOX --- */
+        .lesson-box {
+            background: var(--white);
+            border: 2px solid var(--charcoal);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .lesson-box h2 { color: var(--charcoal); font-size: 1.8rem; margin-bottom: 20px; border-bottom: 4px solid var(--vibrant-tillian); display: inline-block; padding-bottom: 5px; }
+        .lesson-box p { font-size: 1.1rem; color: #444; margin-bottom: 20px; }
+        .lesson-box ul { margin-left: 20px; margin-bottom: 20px; font-size: 1.1rem; color: #444; }
+        .lesson-box li { margin-bottom: 10px; }
+        .highlight-text { color: var(--accent-red); font-weight: bold; }
+
+        /* Navigation Buttons */
+        .lesson-nav { display: flex; justify-content: space-between; margin-top: 40px; }
+        .nav-btn { 
+            text-decoration: none; 
+            font-weight: 800; 
+            padding: 12px 25px; 
+            border-radius: 30px; 
+            color: var(--charcoal); 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .nav-btn.flow-border-white:hover {
+            background: 
+                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--vibrant-tillian) !important;
+            transform: translateY(-2px);
+        }
+
+        footer { text-align: center; padding: 30px; color: var(--charcoal); font-size: 0.9rem; margin-top: 60px; font-weight: bold; border-top: 1px solid #dcdcdc; }
+
+        /* --- 📱 MOBILE RESPONSIVENESS POLISH --- */
+        @media (max-width: 768px) {
+            .lesson-title { font-size: 2.2rem; }
+            .lesson-box { padding: 25px 15px; }
+            header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
+            nav { justify-content: center; width: 100%; gap: 8px; }
+            .logo-img { height: 45px; }
+            .logo-text { height: 45px; font-size: 1.1rem; }
+            .lesson-nav { flex-direction: column; gap: 15px; }
+            .nav-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head> 
+<body>
+    <header>
+        <!-- GLOWING BRANDED LOGO FRAME WITH TEXT -->
+        <a href="index.html" class="logo-frame smooth-link">
+            <div class="logo-inner">
+                <img src="bm1.png" alt="BM Insights Logo" class="logo-img">
+                <span class="logo-text">BM-INSIGHTS</span>
+            </div>
+        </a>
+        
+        <!-- NAVIGATION MENU WITH VIBRANT REVOLVING BORDERS -->
+        <nav>
+            <a href="index.html" class="smooth-link flow-border-white">Start Here</a>
+            <a href="lessons.html" class="active smooth-link flow-border-white">Lessons</a>
+            <a href="blogs.html" class="smooth-link flow-border-white">Blogs</a>
+            <a href="https://www.italki.com/en/teacher/30237174?lv=1" target="_blank" class="book-btn flow-border-red">Book a Lesson</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="lesson-header">
+            <span class="lesson-tag">▶ Video Tutorial</span>
+            <h1 class="lesson-title">The Simple Past Tense</h1>
+            <p class="lesson-subtitle">Learn to describe things you did yesterday.</p>
+        </div>
+
+        <!-- PERFECT 16:9 RESPONSIVE YOUTUBE EMBED -->
+        <div class="video-container">
+            <!-- Replace the src link below with your actual YouTube embed link -->
+            <iframe 
+                src="https://www.youtube.com/embed/IjS2ednY9oo" 
+                title="Tigrinya Lesson Video" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- LESSON NOTES -->
+        <div class="lesson-box">
+            <h2>Lesson Notes</h2>
+            <p>In this video, we cover how to conjugate verbs to talk about the past. Just like in English, Tigrinya has a set of rules for regular verbs, and a few exceptions you need to memorize.</p>
+            
+            <ul>
+                <li>The most common suffix for the "I" form (First Person Singular) in the past tense is <span class="highlight-text">-ኩ (-ku)</span>.</li>
+                <li>Example: "I went" is <span class="highlight-text">ኸይደ (kheyde)</span> or <span class="highlight-text">ከይደ (keyde)</span> depending on dialect context, but root applications often end in <span class="highlight-text">-ku</span> for direct actions.</li>
+                <li>Make sure to practice the pronunciation of the harder guttural sounds mentioned at the 4:12 mark in the video!</li>
+            </ul>
+        </div>
+
+        <!-- BOTTOM NAVIGATION -->
+        <div class="lesson-nav">
+            <a href="lesson-1.html" class="nav-btn flow-border-white smooth-link">← Previous: Basic Greetings</a>
+            <a href="lessons.html" class="nav-btn flow-border-white smooth-link">Back to Library</a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 BM Insights. All rights reserved.
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Smooth Page Transitions
+        document.addEventListener("DOMContentLoaded", () => {
+            const smoothLinks = document.querySelectorAll('.smooth-link');
+            
+            smoothLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only trigger if there's a real href
+                    if(this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        
+                        document.body.classList.add('fade-out');
+                        
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 400);
+                    }
+                });
+            });
+        });
+    </script>
+</body> 
+</html>

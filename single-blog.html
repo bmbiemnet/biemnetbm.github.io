@@ -1,0 +1,423 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Describing Your Daily Routine - BM Insights Blog</title>
+    <style>
+        /* --- BRAND COLORS --- */
+        :root {
+            --bg-cream: #fdf3d8;
+            --pale-green: #eaf1eb;
+            --golden-yellow: #fceea7;
+            --muted-green: #8aa38c;
+            --charcoal: #2b2c30;
+            --bright-yellow: #fadc19;
+            --vibrant-tillian: #00ffff;
+            --white: #ffffff;
+            --accent-red: #d30000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Smooth page fade transition setup */
+        body {
+            background-color: var(--bg-cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+            animation: fadeIn 0.5s ease-in;
+        }
+        body.fade-out { opacity: 0; }
+
+        /* --- GLOBAL ANIMATIONS --- */
+        @keyframes slideDown { 
+            from { opacity: 0; transform: translateY(-20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 🌟 THE SLOW, VIBRANT FLOWING ANIMATION (Logo & Buttons) 🌟 */
+        @keyframes flowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 0%, 0% 50%; }
+            50% { background-position: 0% 0%, 100% 50%; }
+            100% { background-position: 0% 0%, 0% 50%; }
+        }
+
+        /* --- VIBRANT REVOLVING BORDERS --- */
+        .flow-border-white {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite;
+            box-shadow: 0 4px 12px rgba(211, 0, 0, 0.15); 
+        }
+
+        .flow-border-red {
+            border: 2px solid transparent !important;
+            background: 
+                linear-gradient(var(--accent-red), var(--accent-red)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            background-size: 100% 100%, 300% 300%;
+            animation: borderFlow 6s ease infinite; 
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.3);
+        }
+
+        /* --- TACTILE CLICK "ZOOM" EFFECT --- */
+        nav a:active, nav a.book-btn:active, .nav-btn:active, .audio-btn:active {
+            transform: scale(0.92) !important;
+            transition: transform 0.1s ease !important;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--bg-cream); 
+            padding: 15px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            flex-wrap: wrap; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 2px solid #dcdcdc; 
+            gap: 15px;
+        }
+
+        /* --- GLOWING BRANDED LOGO --- */
+        .logo-frame {
+            display: inline-flex;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian));
+            background-size: 300% 300%;
+            animation: flowGradient 6s ease infinite;
+            padding: 4px; 
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo-frame:hover { 
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25);
+        }
+
+        .logo-inner {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-cream);
+            border-radius: 12px;
+        }
+
+        .logo-img { 
+            height: 55px; 
+            width: auto; 
+            object-fit: contain; 
+            padding: 4px 8px 4px 12px;
+            display: block;
+        }
+
+        .logo-text {
+            color: var(--charcoal);
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            padding-right: 15px;
+        }
+
+        /* --- NAVIGATION LINKS --- */
+        nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; flex-grow: 1; justify-content: center; }
+        
+        nav a { 
+            text-decoration: none; 
+            color: var(--charcoal); 
+            font-weight: 700; 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            transition: all 0.3s ease; 
+        }
+
+        nav a.flow-border-white:hover, nav a.active.flow-border-white { 
+            background: 
+                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--vibrant-tillian) !important;
+            transform: translateY(-2px);
+        }
+
+        nav a.book-btn { 
+            border-radius: 25px; 
+            padding: 8px 18px; 
+            margin-left: 10px;
+        }
+
+        nav a.flow-border-red:hover { 
+            background: 
+                linear-gradient(var(--white), var(--white)) padding-box,
+                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
+            color: var(--accent-red) !important; 
+            transform: translateY(-2px); 
+        }
+
+        /* --- BLOG SPECIFIC LAYOUT --- */
+        main { max-width: 800px; margin: 40px auto; padding: 0 20px; animation: slideDown 0.8s ease forwards; }
+
+        .blog-hero {
+            width: 100%;
+            height: 350px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 2px solid var(--charcoal);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .blog-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-header { text-align: center; margin-bottom: 40px; }
+        .blog-tag { background: var(--vibrant-tillian); color: var(--charcoal); font-weight: 900; padding: 5px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--charcoal); font-size: 0.85rem; display: inline-block; margin-bottom: 15px; }
+        .blog-title { font-size: 3rem; font-weight: 900; color: var(--charcoal); margin-bottom: 15px; line-height: 1.2; }
+        .blog-meta { color: #666; font-weight: 600; font-size: 0.95rem; }
+
+        /* The main reading area */
+        .blog-content {
+            background: var(--white);
+            border: 2px solid var(--charcoal);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .blog-content h2 { color: var(--charcoal); font-size: 1.8rem; margin-top: 30px; margin-bottom: 15px; border-bottom: 4px solid var(--vibrant-tillian); display: inline-block; padding-bottom: 5px; }
+        .blog-content p { margin-bottom: 20px; }
+        .blog-content strong { color: var(--accent-red); font-weight: 800; }
+
+        /* Reusable Vocabulary Table for Blogs */
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--charcoal);
+        }
+        .vocab-table th, .vocab-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dcdcdc;
+            vertical-align: middle;
+        }
+        .vocab-table th { background-color: var(--charcoal); color: var(--vibrant-tillian); font-size: 1.1rem; }
+        .vocab-table tr:nth-child(even) { background-color: var(--pale-green); }
+        .vocab-table tr:hover { background-color: var(--bg-cream); }
+        .vocab-tigrinya { font-weight: 900; font-size: 1.3rem; color: var(--accent-red); }
+
+        /* Audio Buttons */
+        .audio-btn { 
+            border-radius: 50%; width: 40px; height: 40px; display: inline-flex; justify-content: center; align-items: center; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; 
+        }
+        .audio-btn.flow-border-white:hover { 
+            background: linear-gradient(var(--vibrant-tillian), var(--vibrant-tillian)) padding-box, linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box; color: var(--charcoal) !important; transform: scale(1.15); 
+        }
+
+        /* Navigation Buttons */
+        .blog-nav { display: flex; justify-content: center; margin-top: 40px; }
+        .nav-btn { 
+            text-decoration: none; font-weight: 800; padding: 12px 30px; border-radius: 30px; color: var(--charcoal); display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;
+        }
+        .nav-btn.flow-border-white:hover {
+            background: linear-gradient(var(--charcoal), var(--charcoal)) padding-box, linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box; color: var(--vibrant-tillian) !important; transform: translateY(-2px);
+        }
+
+        footer { text-align: center; padding: 30px; color: var(--charcoal); font-size: 0.9rem; margin-top: 60px; font-weight: bold; border-top: 1px solid #dcdcdc; }
+
+        /* --- 📱 MOBILE RESPONSIVENESS POLISH --- */
+        @media (max-width: 768px) {
+            .blog-title { font-size: 2.2rem; }
+            .blog-content { padding: 25px 15px; font-size: 1.05rem; }
+            .blog-hero { height: 200px; }
+            header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
+            nav { justify-content: center; width: 100%; gap: 8px; }
+            .logo-img { height: 45px; }
+            .logo-text { height: 45px; font-size: 1.1rem; }
+            .vocab-table { display: block; overflow-x: auto; white-space: nowrap; }
+        }
+    </style>
+</head> 
+<body>
+    <header>
+        <a href="index.html" class="logo-frame smooth-link">
+            <div class="logo-inner">
+                <img src="bm1.png" alt="BM Insights Logo" class="logo-img">
+                <span class="logo-text">BM-INSIGHTS</span>
+            </div>
+        </a>
+        
+        <nav>
+            <a href="index.html" class="smooth-link flow-border-white">Start Here</a>
+            <a href="lessons.html" class="smooth-link flow-border-white">Lessons</a>
+            <a href="blogs.html" class="active smooth-link flow-border-white">Blogs</a>
+            <a href="https://www.italki.com/en/teacher/30237174?lv=1" target="_blank" class="book-btn flow-border-red">Book a Lesson</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="blog-hero">
+            <img src="COVER12.png" alt="Describing your routine in Asmara">
+        </div>
+
+        <div class="blog-header">
+            <span class="blog-tag">Language Tips</span>
+            <h1 class="blog-title">Describing Your Daily Routine</h1>
+            <p class="blog-meta">By BM Insights • Published July 2026</p>
+        </div>
+
+        <div class="blog-content">
+            <p>One of the very first things you will be asked when making friends or speaking with a language partner is, <em>"What do you do every day?"</em></p>
+            
+            <p>To confidently describe your day-to-day life in Tigrinya, you need two main tools in your vocabulary toolkit: <strong>Time Expressions</strong> and <strong>Daily Activity Verbs</strong>. Let's break them down so you can start talking about your schedule immediately.</p>
+
+            <h2>1. Essential Time Expressions</h2>
+            <p>Before you can say what you do, you need to say <em>when</em> you do it. Here are the three most important time markers to structure your routine:</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Time of Day</th>
+                        <th>Tigrinya Script</th>
+                        <th>Transliteration</th>
+                        <th>Listen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Morning</td>
+                        <td class="vocab-tigrinya">ንጉሆ</td>
+                        <td>N'guho</td>
+                        <td><button class="audio-btn flow-border-white" onclick="playAudio('audio/nguho.mp3')" title="Play">🔊</button></td>
+                    </tr>
+                    <tr>
+                        <td>Afternoon</td>
+                        <td class="vocab-tigrinya">ድሕሪ ቐትሪ</td>
+                        <td>D'hri qetri</td>
+                        <td><button class="audio-btn flow-border-white" onclick="playAudio('audio/dhri_qetri.mp3')" title="Play">🔊</button></td>
+                    </tr>
+                    <tr>
+                        <td>Evening / Night</td>
+                        <td class="vocab-tigrinya">ምሸት</td>
+                        <td>M'shet</td>
+                        <td><button class="audio-btn flow-border-white" onclick="playAudio('audio/mshet.mp3')" title="Play">🔊</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>2. Common Daily Activity Verbs</h2>
+            <p>Now that we have our timeline, let's plug in the action. Remember, when you are talking about your own routine, you will generally be conjugating these verbs in the first-person singular ("I" form).</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Action (I do...)</th>
+                        <th>Tigrinya Script</th>
+                        <th>Transliteration</th>
+                        <th>Listen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>I wake up</td>
+                        <td class="vocab-tigrinya">ይትስእ</td>
+                        <td>y't's'e</td>
+                        <td><button class="audio-btn flow-border-white" onclick="playAudio('audio/ytse.mp3')" title="Play">🔊</button></td>
+                    </tr>
+                    <tr>
+                        <td>I eat breakfast</td>
+                        <td class="vocab-tigrinya">ቁርሲ ይበልዕ</td>
+                        <td>qursi y'bel'e</td>
+                        <td><button class="audio-btn flow-border-white" onclick="playAudio('audio/qursi_ybele.mp3')" title="Play">🔊</button></td>
+                    </tr>
+                    <tr>
+                        <td>I go to work</td>
+                        <td class="vocab-tigrinya">ናብ ስራሕ ይኸይድ</td>
+                        <td>nab s'rah y'kheyd</td>
+                        <td><button class="audio-btn flow-border-white" onclick="playAudio('audio/nab_srah_ykheyd.mp3')" title="Play">🔊</button></td>
+                    </tr>
+                    <tr>
+                        <td>I sleep</td>
+                        <td class="vocab-tigrinya">ይድቅስ</td>
+                        <td>y'dq's</td>
+                        <td><button class="audio-btn flow-border-white" onclick="playAudio('audio/ydqs.mp3')" title="Play">🔊</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Putting It Together</h2>
+            <p>You can instantly build a simple story of your day by combining these two tables. For example, if you want to say <strong>"In the morning, I wake up,"</strong> you simply combine <em>N'guho</em> and <em>y't's'e</em>.</p>
+            
+            <p>Practice writing out your own timeline using these words, and don't forget to book a 1-on-1 session to practice speaking your routine out loud!</p>
+        </div>
+
+        <div class="blog-nav">
+            <a href="blogs.html" class="nav-btn flow-border-white smooth-link">← Back to Blog Library</a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 BM Insights. All rights reserved.
+    </footer>
+
+    <script>
+        // --- 1. AUDIO LOGIC ---
+        function playAudio(audioFileUrl) {
+            const audio = new Audio(audioFileUrl);
+            audio.play().catch(error => {
+                alert("Audio file not found! Make sure you save '" + audioFileUrl + "' in your audio folder.");
+            });
+        }
+
+        // --- 2. SMOOTH PAGE TRANSITIONS ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const smoothLinks = document.querySelectorAll('.smooth-link');
+            
+            smoothLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if(this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const targetUrl = this.href;
+                        
+                        document.body.classList.add('fade-out');
+                        
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 400);
+                    }
+                });
+            });
+        });
+    </script>
+</body> 
+</html>
