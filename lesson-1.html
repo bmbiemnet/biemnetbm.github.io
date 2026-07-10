@@ -16,6 +16,7 @@
             --vibrant-tillian: #00ffff;
             --white: #ffffff;
             --accent-red: #d30000;
+            --very-green: #2e8b57;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -43,7 +44,6 @@
             to { opacity: 1; }
         }
 
-        /* 🌟 THE SLOW, VIBRANT FLOWING ANIMATION (Logo & Buttons) 🌟 */
         @keyframes flowGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -56,7 +56,15 @@
             100% { background-position: 0% 0%, 0% 50%; }
         }
 
-        /* --- VIBRANT REVOLVING BORDERS --- */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        .shake { animation: shake 0.4s ease; }
+
+        /* --- VIBRANT REWARDS --- */
         .flow-border-white {
             border: 2px solid transparent !important;
             background: 
@@ -78,8 +86,7 @@
             box-shadow: 0 4px 15px rgba(211, 0, 0, 0.3);
         }
 
-        /* --- TACTILE CLICK "ZOOM" EFFECT --- */
-        nav a:active, nav a.book-btn:active, .audio-btn:active, .nav-btn:active {
+        nav a:active, nav a.book-btn:active, .audio-btn:active, .nav-btn:active, .game-option:active, .tab-btn:active {
             transform: scale(0.92) !important;
             transition: transform 0.1s ease !important;
         }
@@ -99,7 +106,6 @@
             gap: 15px;
         }
 
-        /* --- GLOWING BRANDED LOGO --- */
         .logo-frame {
             display: inline-flex;
             text-decoration: none;
@@ -112,210 +118,163 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .logo-frame:hover { 
-            transform: scale(1.05) translateY(-2px); 
-            box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25);
-        }
+        .logo-frame:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25); }
+        .logo-inner { display: flex; align-items: center; background-color: var(--bg-cream); border-radius: 12px; }
+        .logo-img { height: 55px; width: auto; object-fit: contain; padding: 4px 8px 4px 12px; display: block; }
+        .logo-text { color: var(--charcoal); font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; padding-right: 15px; }
 
-        .logo-inner {
-            display: flex;
-            align-items: center;
-            background-color: var(--bg-cream);
-            border-radius: 12px;
-        }
-
-        .logo-img { 
-            height: 55px; 
-            width: auto; 
-            object-fit: contain; 
-            padding: 4px 8px 4px 12px;
-            display: block;
-        }
-
-        .logo-text {
-            color: var(--charcoal);
-            font-weight: 900;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
-            padding-right: 15px;
-        }
-
-        /* --- NAVIGATION LINKS --- */
         nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; flex-grow: 1; justify-content: center; }
-        
-        nav a { 
-            text-decoration: none; 
-            color: var(--charcoal); 
-            font-weight: 700; 
-            padding: 8px 12px; 
-            border-radius: 8px; 
-            transition: all 0.3s ease; 
-        }
-
-        nav a.flow-border-white:hover, nav a.active.flow-border-white { 
-            background: 
-                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
-                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
-            color: var(--vibrant-tillian) !important;
-            transform: translateY(-2px);
-        }
-
-        nav a.book-btn { 
-            border-radius: 25px; 
-            padding: 8px 18px; 
-        }
-
-        nav a.flow-border-red:hover { 
-            background: 
-                linear-gradient(var(--white), var(--white)) padding-box,
-                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
-            color: var(--accent-red) !important; 
-            transform: translateY(-2px); 
-        }
+        nav a { text-decoration: none; color: var(--charcoal); font-weight: 700; padding: 8px 12px; border-radius: 8px; transition: all 0.3s ease; }
+        nav a.flow-border-white:hover, nav a.active.flow-border-white { background: linear-gradient(var(--charcoal), var(--charcoal)) padding-box, linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box; color: var(--vibrant-tillian) !important; transform: translateY(-2px); }
+        nav a.book-btn { border-radius: 25px; padding: 8px 18px; }
+        nav a.flow-border-red:hover { background: linear-gradient(var(--white), var(--white)) padding-box, linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box; color: var(--accent-red) !important; transform: translateY(-2px); }
 
         main { max-width: 900px; margin: 40px auto; padding: 0 20px; animation: slideDown 0.8s ease forwards; }
 
-        /* --- LESSON CONTENT STYLES --- */
         .lesson-header { text-align: center; margin-bottom: 40px; }
         .lesson-tag { background: var(--vibrant-tillian); color: var(--charcoal); font-weight: 900; padding: 5px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--charcoal); font-size: 0.85rem; display: inline-block; margin-bottom: 15px; }
         .lesson-title { font-size: 3rem; font-weight: 900; color: var(--charcoal); margin-bottom: 10px; line-height: 1.2; }
-        .lesson-subtitle { font-size: 1.2rem; color: var(--accent-red); font-weight: 600; }
+        .lesson-subtitle { font-size: 1.2rem; color: var(--charcoal); font-weight: 500; margin-top: 15px; }
 
-        .lesson-box {
+        /* --- INTERACTIVE FLASHCARDS --- */
+        .flashcard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px;
+            margin-bottom: 60px;
+            margin-top: 20px;
+        }
+
+        .flashcard {
             background: var(--white);
             border: 2px solid var(--charcoal);
             border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
         }
 
-        .lesson-box h2 { color: var(--charcoal); font-size: 1.8rem; margin-bottom: 20px; border-bottom: 4px solid var(--vibrant-tillian); display: inline-block; padding-bottom: 5px; }
-        .lesson-box p { font-size: 1.1rem; color: #444; margin-bottom: 20px; }
+        .flashcard:hover {
+            transform: translateY(-8px);
+            border-color: var(--vibrant-tillian);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.25);
+        }
+
+        .flashcard-english { font-size: 1.2rem; font-weight: 800; color: var(--charcoal); margin-bottom: 20px; padding: 10px 15px; background: var(--pale-green); border-radius: 8px; border: 1px solid #dcdcdc; width: 100%; }
         
-        /* Vocabulary Table */
-        .vocab-table {
+        /* --- NEW: TABBED INTERFACE --- */
+        .card-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 25px;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid var(--charcoal);
         }
-        .vocab-table th, .vocab-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #dcdcdc;
-            vertical-align: middle;
+
+        .tab-btn {
+            background: var(--bg-cream);
+            border: 1px solid #ccc;
+            color: var(--charcoal);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-        .vocab-table th {
-            background-color: var(--charcoal);
-            color: var(--vibrant-tillian);
-            font-size: 1.1rem;
+
+        .tab-btn:hover { background: var(--pale-green); border-color: var(--muted-green); }
+        
+        .tab-btn.active {
+            background: var(--charcoal);
+            color: var(--white);
+            border-color: var(--charcoal);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
-        .vocab-table tr:nth-child(even) { background-color: var(--pale-green); }
-        .vocab-table tr:hover { background-color: var(--bg-cream); }
-        .vocab-tigrinya { font-weight: 900; font-size: 1.3rem; color: var(--accent-red); }
+
+        .tab-content {
+            display: none; /* Hidden by default */
+            width: 100%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: flex; /* Flex layout when active */
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flashcard-tigrinya { font-size: 2.2rem; color: var(--accent-red); font-weight: 900; margin-bottom: 5px; }
+        .flashcard-transliteration { font-size: 1rem; color: #666; font-style: italic; font-weight: 500; margin-bottom: 20px; }
+
+        /* Centered Audio Group */
+        .audio-group {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centers the audio buttons */
+            gap: 15px;
+            margin-top: auto;
+        }
 
         /* Audio Button Base */
         .audio-btn { 
-            border-radius: 50%; 
-            width: 45px; 
-            height: 45px; 
-            display: inline-flex; 
-            justify-content: center; 
-            align-items: center; 
-            font-size: 1.2rem; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
+            border-radius: 50%; width: 55px; height: 55px; display: inline-flex; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease;
         }
+
         .audio-btn.flow-border-white:hover { 
-            background: 
-                linear-gradient(var(--vibrant-tillian), var(--vibrant-tillian)) padding-box,
-                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
-            color: var(--charcoal) !important; 
-            transform: scale(1.15); 
-        }
-        
-        /* Mini Audio Button for Transliterations */
-        .mini-audio {
-            width: 32px;
-            height: 32px;
-            font-size: 0.9rem;
-            margin-left: 10px;
+            background: linear-gradient(var(--vibrant-tillian), var(--vibrant-tillian)) padding-box, linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box; color: var(--charcoal) !important; transform: scale(1.15); 
         }
 
-        /* Transliteration Layout */
-        .transliteration-row {
-            display: flex;
-            align-items: center;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px dashed rgba(43, 44, 48, 0.15);
-        }
-        .transliteration-text {
-            color: #666;
-            font-style: italic;
-            font-size: 0.95rem;
-            font-weight: 500;
+        /* Special hover effect for Turtle Mode */
+        .turtle-btn:hover {
+            background: linear-gradient(var(--very-green), var(--very-green)) padding-box, linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box !important;
         }
 
-        /* --- CONVERSATION PREVIEW --- */
-        .chat-container { background: var(--bg-cream); border-radius: 12px; border: 2px solid var(--charcoal); padding: 30px; margin-top: 30px; }
-        .chat-bubble { background: var(--pale-green); padding: 15px 25px; border-radius: 20px; margin-bottom: 15px; width: fit-content; position: relative; border: 1px solid var(--charcoal); }
-        .chat-tigrinya { font-size: 1.4rem; color: var(--vibrant-tillian); font-weight: bold; background: var(--charcoal); padding: 5px 15px; border-radius: 8px; display: inline-block; margin-bottom: 5px; }
-        .chat-english { font-weight: bold; color: var(--charcoal); font-size: 1.1rem; }
+        /* --- PRONUNCIATION GAME --- */
+        .game-section { background: var(--charcoal); border-radius: 20px; padding: 50px 30px; text-align: center; color: var(--white); margin-bottom: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-bottom: 5px solid var(--accent-red); }
+        .game-section h2 { font-size: 2.2rem; color: var(--bright-yellow); margin-bottom: 10px; }
+        .game-section p { font-size: 1.1rem; margin-bottom: 30px; color: var(--pale-green); }
+        .game-audio-btn { background: var(--vibrant-tillian); color: var(--charcoal); font-size: 3rem; border-radius: 50%; width: 90px; height: 90px; border: 4px solid var(--white); cursor: pointer; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 30px; transition: transform 0.3s ease; }
+        .game-audio-btn:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+        .game-options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; max-width: 700px; margin: 0 auto; }
+        .game-option { background: var(--white); color: var(--charcoal); font-weight: 800; font-size: 1.1rem; padding: 15px 20px; border-radius: 12px; border: 2px solid transparent; cursor: pointer; transition: all 0.2s ease; }
+        .game-option:hover { transform: translateY(-3px); background: var(--pale-green); border-color: var(--vibrant-tillian); }
+        .game-option.correct { background: var(--vibrant-tillian) !important; border-color: var(--white) !important; color: var(--charcoal) !important; transform: scale(1.05); }
+        .game-option.wrong { background: var(--accent-red) !important; color: var(--white) !important; border-color: var(--white) !important; }
+        .feedback-message { font-size: 1.3rem; font-weight: bold; margin-top: 25px; min-height: 30px; }
+        .btn-next-game { margin-top: 20px; padding: 10px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; display: none; background: var(--golden-yellow); border: none; color: var(--charcoal); font-size: 1.1rem; }
 
-        /* Navigation Buttons */
         .lesson-nav { display: flex; justify-content: space-between; margin-top: 40px; }
-        .nav-btn { 
-            text-decoration: none; 
-            font-weight: 800; 
-            padding: 12px 25px; 
-            border-radius: 30px; 
-            color: var(--charcoal); 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-        .nav-btn.flow-border-white:hover {
-            background: 
-                linear-gradient(var(--charcoal), var(--charcoal)) padding-box,
-                linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box;
-            color: var(--vibrant-tillian) !important;
-            transform: translateY(-2px);
-        }
-
+        .nav-btn { text-decoration: none; font-weight: 800; padding: 12px 25px; border-radius: 30px; color: var(--charcoal); display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .nav-btn.flow-border-white:hover { background: linear-gradient(var(--charcoal), var(--charcoal)) padding-box, linear-gradient(135deg, var(--vibrant-tillian), var(--golden-yellow), var(--accent-red), var(--vibrant-tillian)) border-box; color: var(--vibrant-tillian) !important; transform: translateY(-2px); }
         footer { text-align: center; padding: 30px; color: var(--charcoal); font-size: 0.9rem; margin-top: 60px; font-weight: bold; border-top: 1px solid #dcdcdc; }
 
-        /* --- 📱 MOBILE RESPONSIVENESS POLISH --- */
         @media (max-width: 768px) {
             .lesson-title { font-size: 2.2rem; }
-            .lesson-box { padding: 25px 15px; }
             header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
             nav { justify-content: center; width: 100%; gap: 8px; }
             .logo-img { height: 45px; }
             .logo-text { height: 45px; font-size: 1.1rem; }
-            .vocab-table { display: block; overflow-x: auto; white-space: nowrap; }
-            .chat-bubble { width: 100%; margin-left: 0 !important; box-sizing: border-box; }
             .lesson-nav { flex-direction: column; gap: 15px; }
             .nav-btn { width: 100%; justify-content: center; }
+            .game-section { padding: 30px 15px; }
         }
     </style>
 </head> 
 <body>
     <header>
-        <!-- GLOWING BRANDED LOGO FRAME WITH TEXT -->
         <a href="index.html" class="logo-frame smooth-link">
             <div class="logo-inner">
                 <img src="bm1.png" alt="BM Insights Logo" class="logo-img">
                 <span class="logo-text">BM-INSIGHTS</span>
             </div>
         </a>
-        
-        <!-- NAVIGATION MENU WITH VIBRANT REVOLVING BORDERS -->
         <nav>
             <a href="index.html" class="smooth-link flow-border-white">Start Here</a>
             <a href="lessons.html" class="active smooth-link flow-border-white">Lessons</a>
@@ -326,86 +285,239 @@
 
     <main>
         <div class="lesson-header">
-            <span class="lesson-tag">Vocabulary & Culture</span>
+            <span class="lesson-tag">Vocabulary & Daily Expressions</span>
             <h1 class="lesson-title">Lesson 1: Basic Greetings</h1>
-            <p class="lesson-subtitle">Master how to correctly greet males and females in Tigrinya.</p>
+            <p class="lesson-subtitle">Welcome to your first step toward Tigrinya mastery! Every conversation starts with a single word—let's make yours count.</p>
         </div>
 
-        <div class="lesson-box">
-            <h2>The Golden Rule of Greetings</h2>
-            <p>In Tigrinya, the way you say "How are you?" changes depending on whether you are speaking to a male, a female, or a group of people. This is one of the most important foundations to master as a beginner!</p>
-            
-            <table class="vocab-table">
-                <thead>
-                    <tr>
-                        <th>English Meaning</th>
-                        <th>Tigrinya Script</th>
-                        <th>Pronunciation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>How are you? (To a male)</td>
-                        <td class="vocab-tigrinya">ከመይ ኣሎኻ፧</td>
-                        <td>
-                            <div class="transliteration-row" style="border-top: none; margin-top: 0; padding-top: 0;">
-                                <span class="transliteration-text">Kemey alokha?</span>
-                                <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/kemey_aloka.mp3')" title="Play pronunciation">🔊</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>How are you? (To a female)</td>
-                        <td class="vocab-tigrinya">ከመይ ኣሎኺ፧</td>
-                        <td>
-                            <div class="transliteration-row" style="border-top: none; margin-top: 0; padding-top: 0;">
-                                <span class="transliteration-text">Kemey alokhi?</span>
-                                <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/kemey_aloki.mp3')" title="Play pronunciation">🔊</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Very well, thank you.</td>
-                        <td class="vocab-tigrinya">ሰናይ፣ የቐንየለይ</td>
-                        <td>
-                            <div class="transliteration-row" style="border-top: none; margin-top: 0; padding-top: 0;">
-                                <span class="transliteration-text">Senay, yeqenyeley.</span>
-                                <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/senay_yeqenyeley.mp3')" title="Play pronunciation">🔊</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <h2 style="text-align: center; margin-bottom: 20px; color: var(--charcoal); border-bottom: 4px solid var(--vibrant-tillian); display: inline-block; padding-bottom: 5px;">Greetings (ሰላምታ)</h2>
 
-            <h2>See it in a Conversation</h2>
-            <p>Here is what a standard greeting exchange looks like when passing a male friend on the street in Asmara:</p>
+        <div class="flashcard-grid">
+            <!-- STANDARD SINGLE VARIANT FLASHCARDS -->
+            <div class="flashcard">
+                <div class="flashcard-english">Hello</div>
+                <div class="flashcard-tigrinya">ሰላም!</div>
+                <div class="flashcard-transliteration">Selam</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('selam.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('selam.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div>
             
-            <div class="chat-container">
-                <div class="chat-bubble">
-                    <div class="chat-tigrinya">ከመይ ኣሎኻ፧</div>
-                    <div class="chat-english">How are you?</div>
-                    <!-- TRANSLITERATION WITH MINI AUDIO BUTTON -->
-                    <div class="transliteration-row">
-                        <span class="transliteration-text">kemey alokha?</span>
-                        <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/kemey_aloka.mp3')" title="Play pronunciation">🔊</button>
+            <div class="flashcard">
+                <div class="flashcard-english">Good morning</div>
+                <div class="flashcard-tigrinya">ድሓን’ዶ ሓዲርኩም፧</div>
+                <div class="flashcard-transliteration">Dhan’do hadirkhum</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('dhando.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('dhando.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div> 
+            <div class="flashcard">
+                <div class="flashcard-english">Good afternoon</div>
+                <div class="flashcard-tigrinya">ድሓን’ዶ ዊዒልኹም፧</div>
+                <div class="flashcard-transliteration">Dhan’do wielkhum</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('dhandow.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('dhandow.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+
+            </div>  
+            <div class="flashcard">
+                <div class="flashcard-english">Good evening</div>
+                <div class="flashcard-tigrinya">ድሓን’ዶ ኣምሲኹም፧</div>
+                <div class="flashcard-transliteration">Dhan’do amsikhum</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('dhandoam.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('dhandoam.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>    
+            </div>
+
+            <div class="flashcard">
+                <div class="flashcard-english">Have a Good day!</div>
+                <div class="flashcard-tigrinya">ብሩኽ መዓልቲ!</div>
+                <div class="flashcard-transliteration">Bruk mealti!</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('bruk.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('bruk.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>    
+            </div> 
+            <div class="flashcard">
+                <div class="flashcard-english">Good night!</div>
+                <div class="flashcard-tigrinya">ልዋም ለይቲ!</div>
+                <div class="flashcard-transliteration">Lwam leyti!</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('lwam.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('lwam.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>      
+            </div>
+
+
+            <div class="flashcard">
+                <div class="flashcard-english">How was your day? (male)</div>
+                <div class="flashcard-tigrinya">ከመይ ውዒልካ፧</div>
+                <div class="flashcard-transliteration">Kemey wielkha?</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('kwielka.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kwielka.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div>
+
+            <div class="flashcard">
+                <div class="flashcard-english">How was your day? (female)</div>
+                <div class="flashcard-tigrinya">ከመይ ውዒልኪ፧</div>
+                <div class="flashcard-transliteration">Kemey wielkhi?</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('kwielki.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kwielki.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div>
+
+            <div class="flashcard">
+                <div class="flashcard-english">Nice to meet you </div>
+                <div class="flashcard-tigrinya">ጽቡቕ ሌላ።</div>
+                <div class="flashcard-transliteration">Xbuq liela</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('xbuql.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('xbuql.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div>
+            
+            <div class="flashcard">
+                <div class="flashcard-english">See you tomorrow.</div>
+                <div class="flashcard-tigrinya">ጽባሕ የራኽበና።</div>
+                <div class="flashcard-transliteration">Xbah yerakhbena.</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('xbahy.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('xbahy.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div>
+
+            <div class="flashcard">
+                <div class="flashcard-english">Thank you</div>
+                <div class="flashcard-tigrinya">የቐንየለይ</div>
+                <div class="flashcard-transliteration">Yeqenyeley</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('yeq.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('yeq.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div>
+
+            <div class="flashcard">
+                <div class="flashcard-english">You’re Welcome</div>
+                <div class="flashcard-tigrinya">ገንዘብካ</div>
+                <div class="flashcard-transliteration">Genzebkha</div>
+                <div class="audio-group">
+                    <button class="audio-btn flow-border-white" onclick="playAudio('gen.mp3', 1.0)" title="Play normal speed">🔊</button>
+                    <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('gen.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                </div>
+            </div>
+            <!-- FLASHCARD 1: TABBED VERSION -->
+            <div class="flashcard tabbed-card">
+                <div class="flashcard-english">How are you? (male)</div>
+                
+                <!-- Toggle Tabs -->
+                <div class="card-tabs">
+                    <button class="tab-btn" onclick="switchVariant(this, 'formal')">Formal</button>
+                    <button class="tab-btn active" onclick="switchVariant(this, 'casual')">Casual</button>
+                    <button class="tab-btn" onclick="switchVariant(this, 'fast')">Fast</button>
+                </div>
+
+                <!-- Formal Content -->
+                <div class="tab-content formal">
+                    <div class="flashcard-tigrinya">ከመይ ኣሎኻ፧</div>
+                    <div class="flashcard-transliteration">Kemey alokha?</div>
+                    <div class="audio-group">
+                        <button class="audio-btn flow-border-white" onclick="playAudio('kemeyalokha.mp3', 1.0)" title="Play normal speed">🔊</button>
+                        <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kemeyalokha.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
                     </div>
                 </div>
-                
-                <div class="chat-bubble" style="margin-left: auto; background: var(--golden-yellow);">
-                    <div class="chat-tigrinya">ሰናይ፣ የቐንየለይ</div>
-                    <div class="chat-english">Very well, thank you.</div>
-                    <!-- TRANSLITERATION WITH MINI AUDIO BUTTON -->
-                    <div class="transliteration-row">
-                        <span class="transliteration-text">senay, yeqenyeley</span>
-                        <button class="audio-btn flow-border-white mini-audio" onclick="playAudio('audio/senay_yeqenyeley.mp3')" title="Play pronunciation">🔊</button>
+
+                <!-- Casual Content (Active by default) -->
+                <div class="tab-content casual active">
+                    <div class="flashcard-tigrinya">ከመይ ኣለኻ፧</div>
+                    <div class="flashcard-transliteration">Kemey alekha?</div>
+                    <div class="audio-group">
+                        <button class="audio-btn flow-border-white" onclick="playAudio('kemeyalekha.mp3', 1.0)" title="Play normal speed">🔊</button>
+                        <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kemeyalekha.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                    </div>
+                </div>
+
+                <!-- Fast Content -->
+                <div class="tab-content fast">
+                    <div class="flashcard-tigrinya">ከሜ'ለኻ፧</div>
+                    <div class="flashcard-transliteration">Keme'lekha?</div>
+                    <div class="audio-group">
+                        <button class="audio-btn flow-border-white" onclick="playAudio('kemeylekha.mp3', 1.0)" title="Play normal speed">🔊</button>
+                        <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kemeylekha.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
                     </div>
                 </div>
             </div>
+
+            <!-- FLASHCARD 2: TABBED VERSION -->
+            <div class="flashcard tabbed-card">
+                <div class="flashcard-english">How are you? (female)</div>
+                
+                <!-- Toggle Tabs -->
+                <div class="card-tabs">
+                    <button class="tab-btn" onclick="switchVariant(this, 'formal')">Formal</button>
+                    <button class="tab-btn active" onclick="switchVariant(this, 'casual')">Casual</button>
+                    <button class="tab-btn" onclick="switchVariant(this, 'fast')">Fast</button>
+                </div>
+
+                <!-- Formal Content -->
+                <div class="tab-content formal">
+                    <div class="flashcard-tigrinya">ከመይ ኣሎኺ፧</div>
+                    <div class="flashcard-transliteration">Kemey alokhi?</div>
+                    <div class="audio-group">
+                        <button class="audio-btn flow-border-white" onclick="playAudio('kemeyalokhi.mp3', 1.0)" title="Play normal speed">🔊</button>
+                        <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kemeyalokhi.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                    </div>
+                </div>
+
+                <!-- Casual Content (Active by default) -->
+                <div class="tab-content casual active">
+                    <div class="flashcard-tigrinya">ከመይ ኣለኺ፧</div>
+                    <div class="flashcard-transliteration">Kemey alekhi?</div>
+                    <div class="audio-group">
+                        <button class="audio-btn flow-border-white" onclick="playAudio('kemeyalekhi.mp3', 1.0)" title="Play normal speed">🔊</button>
+                        <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kemeyalekhi.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                    </div>
+                </div>
+
+                <!-- Fast Content -->
+                <div class="tab-content fast">
+                    <div class="flashcard-tigrinya">ከሜ'ለኺ፧</div>
+                    <div class="flashcard-transliteration">Keme'lekhi?</div>
+                    <div class="audio-group">
+                        <button class="audio-btn flow-border-white" onclick="playAudio('kemeylekhi.mp3', 1.0)" title="Play normal speed">🔊</button>
+                        <button class="audio-btn flow-border-white turtle-btn" onclick="playAudio('kemeylekhi.mp3', 0.6)" title="Play slow (turtle mode)">🐢</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+        </div>
+
+        <!-- PRONUNCIATION GAME SECTION -->
+        <div class="game-section">
+            <h2>Test Your Listening</h2>
+            <p>Click play to hear a secret greeting, then select the matching English phrase!</p>
+            
+            <button class="game-audio-btn" onclick="playGameAudio()" title="Play Mystery Audio">🔊</button>
+            
+            <div class="game-options-grid" id="game-options-container">
+                <!-- Buttons are injected here by Javascript -->
+            </div>
+            
+            <div id="game-feedback" class="feedback-message"></div>
+            <button id="next-question-btn" class="btn-next-game" onclick="loadNewQuestion()">Play Again 🔄</button>
         </div>
 
         <div class="lesson-nav">
             <a href="lessons.html" class="nav-btn flow-border-white smooth-link">← Back to Lessons</a>
-            <a href="video-lesson.html" class="nav-btn flow-border-white smooth-link">Next: Simple Past Tense →</a>
+            <a href="video-lesson.html" class="nav-btn flow-border-white smooth-link">Next: Video Lesson →</a>
         </div>
     </main>
 
@@ -415,34 +527,114 @@
 
     <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
-        // 1. Audio Player Logic
-        function playAudio(audioFileUrl) {
+        // --- Tab Switching Logic ---
+        function switchVariant(buttonElement, targetVariant) {
+            // Find the parent flashcard of the clicked button
+            const flashcard = buttonElement.closest('.flashcard');
+            
+            // Remove 'active' from all buttons in THIS card
+            flashcard.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Add 'active' to the clicked button
+            buttonElement.classList.add('active');
+            
+            // Hide all tab contents in THIS card
+            flashcard.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            // Show the target content
+            flashcard.querySelector(`.tab-content.${targetVariant}`).classList.add('active');
+        }
+
+        // --- Audio Player Logic with Speed Control ---
+        function playAudio(audioFileUrl, playbackSpeed = 1.0) {
             const audio = new Audio(audioFileUrl);
+            audio.playbackRate = playbackSpeed;
             audio.play().catch(error => {
                 alert("Audio file not found! Make sure you save '" + audioFileUrl + "' in your audio folder.");
             });
         }
 
-        // 2. Smooth Page Transitions
+        // --- Smooth Page Transitions ---
         document.addEventListener("DOMContentLoaded", () => {
             const smoothLinks = document.querySelectorAll('.smooth-link');
-            
             smoothLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    // Only trigger if there's a real href
                     if(this.getAttribute('href') !== '#') {
                         e.preventDefault();
                         const targetUrl = this.href;
-                        
                         document.body.classList.add('fade-out');
-                        
-                        setTimeout(() => {
-                            window.location.href = targetUrl;
-                        }, 400);
+                        setTimeout(() => { window.location.href = targetUrl; }, 400);
                     }
                 });
             });
+
+            // Initialize Game on load
+            loadNewQuestion();
         });
+
+        // --- Pronunciation Game Logic ---
+        const lessonVocabulary = [
+            { english: "Hello", audio: "selam.mp3" },
+            { english: "Good morning", audio: "dhando.mp3" },
+            { english: "How are you? (male)", audio: "kemeyalekha.mp3" }, 
+            { english: "How are you? (female)", audio: "kemeyalekhi.mp3" },
+            { english: "How was your day? (male)", audio: "kwielka.mp3" },
+            { english: "How was your day? (female)", audio: "kwielki.mp3" },
+            { english: "Thank you", audio: "yeq.mp3" },
+            { english: "You’re Welcome", audio: "gen.mp3" }
+        ];
+
+        let currentCorrectAnswer = {};
+        let currentAudio = null;
+
+        function loadNewQuestion() {
+            document.getElementById('game-feedback').innerText = "";
+            document.getElementById('game-feedback').style.color = "var(--white)";
+            document.getElementById('next-question-btn').style.display = "none";
+            const optionsContainer = document.getElementById('game-options-container');
+            optionsContainer.innerHTML = "";
+
+            let shuffledVocab = [...lessonVocabulary].sort(() => 0.5 - Math.random());
+            currentCorrectAnswer = shuffledVocab[0];
+            
+            let gameOptions = [shuffledVocab[0], shuffledVocab[1], shuffledVocab[2]];
+            gameOptions.sort(() => 0.5 - Math.random()); 
+
+            gameOptions.forEach(option => {
+                const btn = document.createElement("button");
+                btn.className = "game-option";
+                btn.innerText = option.english;
+                btn.onclick = () => checkAnswer(btn, option.english);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function playGameAudio() {
+            if(currentCorrectAnswer.audio) {
+                if(currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+                currentAudio = new Audio(currentCorrectAnswer.audio);
+                currentAudio.play().catch(e => {
+                    document.getElementById('game-feedback').innerText = "Oops! Ensure audio files are uploaded.";
+                    document.getElementById('game-feedback').style.color = "var(--golden-yellow)";
+                });
+            }
+        }
+
+        function checkAnswer(clickedButton, selectedEnglish) {
+            const feedbackText = document.getElementById('game-feedback');
+            
+            if(feedbackText.innerText === "Excellent! Correct! 🎉") return;
+
+            if (selectedEnglish === currentCorrectAnswer.english) {
+                clickedButton.classList.add("correct");
+                feedbackText.innerText = "Excellent! Correct! 🎉";
+                feedbackText.style.color = "var(--vibrant-tillian)";
+                document.getElementById('next-question-btn').style.display = "inline-block";
+            } else {
+                clickedButton.classList.add("wrong", "shake");
+                feedbackText.innerText = "Try again!";
+                feedbackText.style.color = "var(--accent-red)";
+                setTimeout(() => { clickedButton.classList.remove("shake"); }, 400);
+            }
+        }
     </script>
 </body> 
 </html>
